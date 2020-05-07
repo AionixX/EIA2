@@ -1,31 +1,33 @@
 "use strict";
 var Boxes;
 (function (Boxes) {
+    window.addEventListener("load", draw);
     let n = 5;
     let color;
     let x = 0;
     let y = 0;
-    debugger;
-    for (let i = 0; i < n; i++) {
-        y += (i == 2) ? 20 : 50;
-        x = (x + 170) % 400;
-        switch (i) {
-            case 0:
-                color = "#ff0000";
-                break;
-            case 1:
-            case 4:
-                color = "#00ff00";
-                break;
-            case 3:
-                continue;
-            default:
-                color = "#0000ff";
-        }
-        for (let size of ["big", "medium", "small"]) {
-            createBox(color, x, y, size);
-            if (i == 4)
-                break;
+    function draw() {
+        for (let i = 0; i < n; i++) {
+            y += (i == 2) ? 20 : 50;
+            x = (x + 170) % 400;
+            switch (i) {
+                case 0:
+                    color = "#ff0000";
+                    break;
+                case 1:
+                case 4:
+                    color = "#00ff00";
+                    break;
+                case 3:
+                    continue;
+                default:
+                    color = "#0000ff";
+            }
+            for (let size of ["big", "medium", "small"]) {
+                createBox(color, x, y, size);
+                if (i == 4)
+                    break;
+            }
         }
     }
     function createBox(_color, _x, _y, _size) {

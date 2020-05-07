@@ -1,0 +1,5 @@
+.task {
+    min-width: 5em;
+    min-height: 3em;
+    border: 1px solid black;
+}

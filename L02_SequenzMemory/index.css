@@ -1,0 +1,29 @@
+.cardUnchecked {
+    display: flex;
+    width: 6em;
+    height: 6em;
+    margin: 1em;
+    border: black solid 1px;
+    border-radius: 1em;
+    justify-content: center;
+    align-items: center;
+}
+.textVisible {
+    display: flex;
+}
+.textInvisible {
+    display: none;
+}
+.uncheckedField {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.green {
+    background-color: green;
+}
+
+.red {
+    background-color: red;
+}
