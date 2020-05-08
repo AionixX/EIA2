@@ -8,7 +8,9 @@ var Haushaltshilfe_New;
         { name: "Hering", amount: [2.5, 0.025, 3.5] },
         { name: "Butter", amount: [1.35, 0.0135, 1.8] },
         { name: "Einkaufen", amount: [10] },
-        { name: "Arbeit", amount: [15] },
+        { name: "Rasenmähen", amount: [10] },
+        { name: "Streichen", amount: [15] },
+        { name: "Wischen", amount: [5] },
         { name: "Bank", amount: [5] }
     ];
     window.addEventListener("load", Init);
@@ -32,8 +34,9 @@ var Haushaltshilfe_New;
     }
     function CreateDiv() {
         let div = document.createElement("div");
-        div.classList.add("taskDiv");
+        div.id = "taskDiv";
         let dropDownField = CreateFieldSet("Aufgabe");
+        dropDownField.id = "taskDropDown";
         let dropDown = CreateTaskDropDown();
         dropDown.addEventListener("change", (event) => {
             UpdateTask(event, div);
@@ -50,6 +53,7 @@ var Haushaltshilfe_New;
                 AddShoppingFieldSets(task);
                 break;
             case "Haushaltsarbeit":
+                AddWorkFieldSet(task);
                 break;
             case "Bank":
                 AddBankFieldSet(task);
@@ -58,18 +62,117 @@ var Haushaltshilfe_New;
         }
     }
     function ClearTask(task) {
-        console.log("Clear" + task);
+        for (let i = 0; i < task.childElementCount; i++) {
+            if (task.children[i].id != "taskDiv" && task.children[i].id != "taskDropDown") {
+                task.children[i].remove();
+            }
+        }
+    }
+    function AddWorkFieldSet(task) {
+        let workDropDown = CreateWorkDropDown();
+        let costs = CreateWorkCosts();
+        workDropDown.addEventListener("change", () => {
+            UpdateCosts(workDropDown, costs);
+        });
+        task.appendChild(workDropDown);
+        task.appendChild(costs);
+    }
+    function UpdateCosts(dropDown, costs) {
+        let totalPrice = costs.querySelector("#totalTaskPrice");
+        let amount = prices.find(element => element.name == dropDown.value);
+        totalPrice.innerText = amount.amount[0].toFixed(2);
+    }
+    function CreateWorkCosts() {
+        let feePriceDiv = document.createElement("div");
+        let euroSign = document.createElement("span");
+        euroSign.innerText = " €";
+        let feeBefore = document.createElement("span");
+        feeBefore.innerText = "Gebühren: ";
+        let feePrice = document.createElement("span");
+        feePrice.id = "totalTaskPrice";
+        feePrice.innerText = "0.000";
+        feePriceDiv.appendChild(feeBefore);
+        feePriceDiv.appendChild(feePrice);
+        feePriceDiv.appendChild(euroSign);
+        return feePriceDiv;
+    }
+    function CreateWorkDropDown() {
+        let dropDown = document.createElement("select");
+        let select = document.createElement("option");
+        select.value = "Auswählen";
+        select.innerHTML = "Auswählen";
+        let mow = document.createElement("option");
+        mow.value = "Rasenmähen";
+        mow.innerHTML = "Rasenmähen";
+        let brush = document.createElement("option");
+        brush.value = "Streichen";
+        brush.innerHTML = "Streichen";
+        let wipe = document.createElement("option");
+        wipe.value = "Wischen";
+        wipe.innerHTML = "Wischen";
+        dropDown.appendChild(select);
+        dropDown.appendChild(mow);
+        dropDown.appendChild(brush);
+        dropDown.appendChild(wipe);
+        return dropDown;
     }
     function AddBankFieldSet(task) {
         task.appendChild(CreateBankRadios());
+        task.appendChild(CreateSlider());
+        task.appendChild(CreateTotalBankAmount());
+    }
+    function CreateTotalBankAmount() {
+        let feePriceDiv = document.createElement("div");
+        let euroSign = document.createElement("span");
+        euroSign.innerText = " €";
+        let feeBefore = document.createElement("span");
+        feeBefore.innerText = "Gebühren: ";
+        let feePrice = document.createElement("span");
+        feePrice.id = "totalTaskPrice";
+        let feeAmount = prices.find(element => element.name == "Bank");
+        feePrice.innerText = feeAmount.amount[0].toFixed(2);
+        feePriceDiv.appendChild(feeBefore);
+        feePriceDiv.appendChild(feePrice);
+        feePriceDiv.appendChild(euroSign);
+        return feePriceDiv;
+    }
+    function CreateSlider() {
+        let container = document.createElement("div");
+        let slider = document.createElement("input");
+        slider.type = "range";
+        slider.min = "5";
+        slider.max = "100";
+        slider.step = "5";
+        slider.value = "5";
+        let amountSpan = document.createElement("span");
+        amountSpan.innerText = slider.value + " €";
+        slider.addEventListener("change", () => {
+            amountSpan.innerText = slider.value + " €";
+        });
+        container.appendChild(slider);
+        container.appendChild(amountSpan);
+        return container;
     }
     function CreateBankRadios() {
         let container = document.createElement("div");
+        let radioGroup = document.createElement("fieldset");
         let radioGet = document.createElement("input");
-        radioGet.type = "checkbox";
-        radioGet.value = "Hallo";
-        radioGet.innerText = "bb";
-        container.appendChild(radioGet);
+        radioGet.type = "radio";
+        radioGet.value = "get";
+        radioGet.name = "money";
+        let labelGet = document.createElement("label");
+        labelGet.innerText = "Abheben";
+        labelGet.appendChild(radioGet);
+        let radioSet = document.createElement("input");
+        radioSet.type = "radio";
+        radioSet.value = "set";
+        radioSet.name = "money";
+        let labelSet = document.createElement("label");
+        labelSet.innerText = "Einzahlen";
+        labelSet.appendChild(radioSet);
+        radioGroup.appendChild(labelGet);
+        radioGroup.appendChild(labelSet);
+        container.appendChild(radioGroup);
         return container;
     }
     function AddShoppingFieldSets(task) {

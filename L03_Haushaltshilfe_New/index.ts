@@ -12,7 +12,9 @@ namespace Haushaltshilfe_New {
     { name: "Hering", amount: [2.5, 0.025, 3.5] },
     { name: "Butter", amount: [1.35, 0.0135, 1.8] },
     { name: "Einkaufen", amount: [10] },
-    { name: "Arbeit", amount: [15] },
+    { name: "Rasenmähen", amount: [10] },
+    { name: "Streichen", amount: [15] },
+    { name: "Wischen", amount: [5] },
     { name: "Bank", amount: [5] }
   ];
 
@@ -39,9 +41,10 @@ namespace Haushaltshilfe_New {
   }
   function CreateDiv(): HTMLDivElement {
     let div: HTMLDivElement = document.createElement("div");
-    div.classList.add("taskDiv");
+    div.id = "taskDiv";
 
     let dropDownField: HTMLFieldSetElement = CreateFieldSet("Aufgabe");
+    dropDownField.id = "taskDropDown";
     let dropDown: HTMLSelectElement = CreateTaskDropDown();
     dropDown.addEventListener("change", (event) => {
       UpdateTask(event, div);
@@ -60,6 +63,7 @@ namespace Haushaltshilfe_New {
         AddShoppingFieldSets(task);
         break;
       case "Haushaltsarbeit":
+        AddWorkFieldSet(task);
         break;
       case "Bank":
         AddBankFieldSet(task);
@@ -68,21 +72,144 @@ namespace Haushaltshilfe_New {
     }
   }
   function ClearTask(task: HTMLDivElement): void {
-    console.log("Clear" + task);
+    for (let i: number = 0; i < task.childElementCount; i++) {
+      if (task.children[i].id != "taskDiv" && task.children[i].id != "taskDropDown") {
+        task.children[i].remove();
+      }
+    }
+  }
+  function AddWorkFieldSet(task: HTMLDivElement): void {
+    let workDropDown: HTMLSelectElement = CreateWorkDropDown();
+    let costs: HTMLDivElement = CreateWorkCosts();
+
+    workDropDown.addEventListener("change", () => {
+      UpdateCosts(workDropDown, costs);
+    });
+
+    task.appendChild(workDropDown);
+    task.appendChild(costs);
+  }
+  function UpdateCosts(dropDown: HTMLSelectElement, costs: HTMLDivElement): void {
+    let totalPrice: HTMLSpanElement = <HTMLSpanElement>costs.querySelector("#totalTaskPrice");
+    let amount: Price = <Price>prices.find(element => (<Price>element).name == dropDown.value);
+    totalPrice.innerText = amount.amount[0].toFixed(2);
+  }
+  function CreateWorkCosts(): HTMLDivElement {
+    let feePriceDiv: HTMLDivElement = document.createElement("div");
+
+    let euroSign: HTMLSpanElement = document.createElement("span");
+    euroSign.innerText = " €";
+
+    let feeBefore: HTMLSpanElement = document.createElement("span");
+    feeBefore.innerText = "Gebühren: ";
+    let feePrice: HTMLSpanElement = document.createElement("span");
+    feePrice.id = "totalTaskPrice";
+    feePrice.innerText = "0.000";
+    feePriceDiv.appendChild(feeBefore);
+    feePriceDiv.appendChild(feePrice);
+    feePriceDiv.appendChild(euroSign);
+
+    return feePriceDiv;
+  }
+  function CreateWorkDropDown(): HTMLSelectElement {
+    let dropDown: HTMLSelectElement = document.createElement("select");
+
+    let select: HTMLOptionElement = document.createElement("option");
+    select.value = "Auswählen";
+    select.innerHTML = "Auswählen";
+
+    let mow: HTMLOptionElement = document.createElement("option");
+    mow.value = "Rasenmähen";
+    mow.innerHTML = "Rasenmähen";
+
+    let brush: HTMLOptionElement = document.createElement("option");
+    brush.value = "Streichen";
+    brush.innerHTML = "Streichen";
+
+    let wipe: HTMLOptionElement = document.createElement("option");
+    wipe.value = "Wischen";
+    wipe.innerHTML = "Wischen";
+
+    dropDown.appendChild(select);
+    dropDown.appendChild(mow);
+    dropDown.appendChild(brush);
+    dropDown.appendChild(wipe);
+
+    return dropDown;
   }
   function AddBankFieldSet(task: HTMLDivElement): void {
     task.appendChild(CreateBankRadios());
+    task.appendChild(CreateSlider());
+    task.appendChild(CreateTotalBankAmount());
+  }
+  function CreateTotalBankAmount(): HTMLDivElement {
+    let feePriceDiv: HTMLDivElement = document.createElement("div");
+
+    let euroSign: HTMLSpanElement = document.createElement("span");
+    euroSign.innerText = " €";
+
+    let feeBefore: HTMLSpanElement = document.createElement("span");
+    feeBefore.innerText = "Gebühren: ";
+    let feePrice: HTMLSpanElement = document.createElement("span");
+    feePrice.id = "totalTaskPrice";
+    let feeAmount: Price = <Price>prices.find(element => (<Price>element).name == "Bank");
+    feePrice.innerText = feeAmount.amount[0].toFixed(2);
+    feePriceDiv.appendChild(feeBefore);
+    feePriceDiv.appendChild(feePrice);
+    feePriceDiv.appendChild(euroSign);
+
+    return feePriceDiv;
+  }
+  function CreateSlider(): HTMLDivElement {
+    let container: HTMLDivElement = document.createElement("div");
+
+    let slider: HTMLInputElement = document.createElement("input");
+    slider.type = "range";
+    slider.min = "5";
+    slider.max = "100";
+    slider.step = "5";
+    slider.value = "5";
+
+    let amountSpan: HTMLSpanElement = document.createElement("span");
+    amountSpan.innerText = slider.value + " €";
+
+    slider.addEventListener("change", () => {
+      amountSpan.innerText = slider.value + " €";
+    });
+
+    container.appendChild(slider);
+    container.appendChild(amountSpan);
+
+    return container;
   }
   function CreateBankRadios(): HTMLDivElement {
     let container: HTMLDivElement = document.createElement("div");
+    let radioGroup: HTMLFieldSetElement = document.createElement("fieldset");
 
     let radioGet: HTMLInputElement = document.createElement("input");
-    radioGet.type = "checkbox";
-    radioGet.value = "Hallo";
-    radioGet.innerText = "bb";
-    
-    container.appendChild(radioGet);
+    radioGet.type = "radio";
+    radioGet.value = "get";
+    radioGet.name = "money";
 
+    let labelGet: HTMLLabelElement = document.createElement("label");
+    labelGet.innerText = "Abheben";
+
+    labelGet.appendChild(radioGet);
+
+    let radioSet: HTMLInputElement = document.createElement("input");
+    radioSet.type = "radio";
+    radioSet.value = "set";
+    radioSet.name = "money";
+
+    let labelSet: HTMLLabelElement = document.createElement("label");
+    labelSet.innerText = "Einzahlen";
+
+    labelSet.appendChild(radioSet);
+
+    radioGroup.appendChild(labelGet);
+    radioGroup.appendChild(labelSet);
+
+    container.appendChild(radioGroup);
     return container;
   }
   function AddShoppingFieldSets(task: HTMLDivElement): void {
