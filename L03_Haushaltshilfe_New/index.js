@@ -50,15 +50,27 @@ var Haushaltshilfe_New;
                 AddShoppingFieldSets(task);
                 break;
             case "Haushaltsarbeit":
-                console.log("Haushaltsarbeit");
                 break;
             case "Bank":
+                AddBankFieldSet(task);
                 console.log("Bank");
                 break;
         }
     }
     function ClearTask(task) {
         console.log("Clear" + task);
+    }
+    function AddBankFieldSet(task) {
+        task.appendChild(CreateBankRadios());
+    }
+    function CreateBankRadios() {
+        let container = document.createElement("div");
+        let radioGet = document.createElement("input");
+        radioGet.type = "checkbox";
+        radioGet.value = "Hallo";
+        radioGet.innerText = "bb";
+        container.appendChild(radioGet);
+        return container;
     }
     function AddShoppingFieldSets(task) {
         let addButton = document.createElement("button");

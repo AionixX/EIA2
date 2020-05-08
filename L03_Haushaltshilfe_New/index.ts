@@ -60,15 +60,30 @@ namespace Haushaltshilfe_New {
         AddShoppingFieldSets(task);
         break;
       case "Haushaltsarbeit":
-        console.log("Haushaltsarbeit");
         break;
       case "Bank":
+        AddBankFieldSet(task);
         console.log("Bank");
         break;
     }
   }
   function ClearTask(task: HTMLDivElement): void {
     console.log("Clear" + task);
+  }
+  function AddBankFieldSet(task: HTMLDivElement): void {
+    task.appendChild(CreateBankRadios());
+  }
+  function CreateBankRadios(): HTMLDivElement {
+    let container: HTMLDivElement = document.createElement("div");
+
+    let radioGet: HTMLInputElement = document.createElement("input");
+    radioGet.type = "checkbox";
+    radioGet.value = "Hallo";
+    radioGet.innerText = "bb";
+    
+    container.appendChild(radioGet);
+
+    return container;
   }
   function AddShoppingFieldSets(task: HTMLDivElement): void {
     let addButton: HTMLButtonElement = document.createElement("button");
