@@ -1,6 +1,6 @@
 "use strict";
-var L03_Cocktailbar;
-(function (L03_Cocktailbar) {
+var L04_Cocktailbar;
+(function (L04_Cocktailbar) {
     window.addEventListener("load", handleLoad);
     function handleLoad(_event) {
         let form = document.querySelector("div#form");
@@ -34,5 +34,5 @@ var L03_Cocktailbar;
         let amount = _event.target.value;
         progress.value = parseFloat(amount);
     }
-})(L03_Cocktailbar || (L03_Cocktailbar = {}));
+})(L04_Cocktailbar || (L04_Cocktailbar = {}));
 //# sourceMappingURL=index.js.map

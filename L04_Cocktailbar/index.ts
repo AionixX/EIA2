@@ -1,4 +1,4 @@
-namespace L03_Cocktailbar {
+namespace L04_Cocktailbar {
   window.addEventListener("load", handleLoad);
 
   function handleLoad(_event: Event): void {
