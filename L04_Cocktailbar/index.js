@@ -3,6 +3,7 @@ var L04_Cocktailbar;
 (function (L04_Cocktailbar) {
     window.addEventListener("load", handleLoad);
     function handleLoad(_event) {
+        L04_Cocktailbar.generateContent(L04_Cocktailbar.data);
         let form = document.querySelector("div#form");
         let slider = document.querySelector("input#amount");
         form.addEventListener("change", handleChange);
@@ -24,7 +25,7 @@ var L04_Cocktailbar;
                 order.innerHTML += item.value + "  € " + amountPrice.toFixed(2) + "<br>";
                 continue;
             }
-            order.innerHTML += item.name + "  € " + price.toFixed(2) + "<br>";
+            order.innerHTML += item.value + "  € " + price.toFixed(2) + "<br>";
             total += Number(price);
         }
         order.innerHTML += "<strong>Total: € " + Number(total).toFixed(2) + "</strong>";
