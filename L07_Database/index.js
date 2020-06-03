@@ -1,13 +1,30 @@
-export var L05_Cocktailbar;
-(function (L05_Cocktailbar) {
+"use strict";
+var L07_Cocktailbar;
+(function (L07_Cocktailbar) {
+    let data = {
+        Drink: [
+            { name: "Mojito", price: 25.00 },
+            { name: "Caipirinha", price: 30.00 },
+            { name: "Bloody Mary", price: 21.00 }
+        ],
+        Extras: [
+            { name: "Ice", price: 0.50 },
+            { name: "Lemon", price: 0.20 },
+            { name: "Orange", price: 0.15 },
+            { name: "Mint", price: 0.30 }
+        ],
+        Container: [
+            { name: "Slim", price: 3.50 },
+            { name: "Wide", price: 4.00 },
+            { name: "Papercup", price: 0.50 },
+            { name: "Plasticbag", price: 0.05 }
+        ]
+    };
     let form;
     let slider;
     let submit;
     window.addEventListener("load", handleLoad);
     async function handleLoad(_event) {
-        let response = await fetch("Data.json");
-        let offer = await response.text();
-        let data = JSON.parse(offer);
         generateContent(data);
         form = document.querySelector("form");
         slider = document.querySelector("input#amount");
@@ -19,7 +36,7 @@ export var L05_Cocktailbar;
     async function sendOrder() {
         let formData = new FormData(form);
         let query = new URLSearchParams(formData);
-        await fetch("index?html?" + query.toString());
+        await fetch("http://localhost:5001?" + query.toString());
     }
     function handleChange(_event) {
         let order = document.querySelector("div#order");
@@ -72,7 +89,6 @@ export var L05_Cocktailbar;
             }
         }
     }
-    L05_Cocktailbar.generateContent = generateContent;
     function createFieldSets(_category) {
         let fieldSet = document.createElement("fieldset");
         fieldSet.id = _category;
@@ -130,5 +146,5 @@ export var L05_Cocktailbar;
         }
         return group;
     }
-})(L05_Cocktailbar || (L05_Cocktailbar = {}));
+})(L07_Cocktailbar || (L07_Cocktailbar = {}));
 //# sourceMappingURL=index.js.map

@@ -1,4 +1,4 @@
-namespace L04_Cocktailbar {
+namespace L07_Cocktailbar {
   export let data: Data = {
     Drink: [
       {name: "Mojito", price: 25.00},

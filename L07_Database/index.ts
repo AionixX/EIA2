@@ -1,12 +1,32 @@
-export namespace L05_Cocktailbar {
+namespace L07_Cocktailbar {
 
-  export interface Item {
+  interface Item {
     name: string;
     price: number;
   }
-  export interface Data {
+  interface Data {
     [category: string]: Item[];
   }
+
+  let data: Data = {
+    Drink: [
+      {name: "Mojito", price: 25.00},
+      {name: "Caipirinha", price: 30.00},
+      {name: "Bloody Mary", price: 21.00} 
+    ],
+    Extras: [
+      {name: "Ice", price: 0.50},
+      {name: "Lemon", price: 0.20},
+      {name: "Orange", price: 0.15},
+      {name: "Mint", price: 0.30}
+    ],
+    Container: [
+      {name: "Slim", price: 3.50},
+      {name: "Wide", price: 4.00},
+      {name: "Papercup", price: 0.50},
+      {name: "Plasticbag", price: 0.05}
+    ]
+  };
 
   let form: HTMLFormElement;
   let slider: HTMLInputElement;
@@ -15,10 +35,6 @@ export namespace L05_Cocktailbar {
   window.addEventListener("load", handleLoad);
   
   async function handleLoad(_event: Event): Promise<void> {
-
-    let response: Response = await fetch("Data.json");
-    let offer: string = await response.text();
-    let data: Data = JSON.parse(offer);
 
     generateContent(data);
   
@@ -34,7 +50,7 @@ export namespace L05_Cocktailbar {
   async function sendOrder(): Promise<void> {
     let formData: FormData = new FormData(form);
     let query: URLSearchParams = new URLSearchParams(<any>formData);
-    await fetch("index?html?" + query.toString());
+    await fetch("http://localhost:5001?" + query.toString());
 
   }
   function handleChange(_event: Event): void {
@@ -71,7 +87,7 @@ export namespace L05_Cocktailbar {
     progress.value = parseFloat(amount);
   }
 
-  export function generateContent(_data: Data): void {
+  function generateContent(_data: Data): void {
     let form: HTMLDivElement = <HTMLDivElement>document.querySelector("#form");
 
     for (let category in _data) {
