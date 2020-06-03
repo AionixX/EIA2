@@ -24,8 +24,8 @@ var L07_Cocktailbar;
     }
     function startServer(_port) {
         let server = Http.createServer();
-        server.listen(port);
-        console.log("listening on :" + port);
+        server.listen();
+        console.log("listening on :");
         server.addListener("request", handleRequest);
     }
     function handleRequest(_request, _response) {
