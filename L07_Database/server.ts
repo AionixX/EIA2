@@ -11,7 +11,7 @@ export namespace L07_Cocktailbar {
   let port: number | string | undefined = process.env.port;
 
   if (port == undefined)
-    port = 5001;
+    port = 80;
 
   let databaseUrl: string = "mongodb://localhost:27017";
 

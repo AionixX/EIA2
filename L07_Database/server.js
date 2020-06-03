@@ -8,7 +8,7 @@ var L07_Cocktailbar;
     let orders;
     let port = process.env.port;
     if (port == undefined)
-        port = 5001;
+        port = 80;
     let databaseUrl = "mongodb://localhost:27017";
     /*if (process.argv[2] == "remote")*/
     databaseUrl = "mongodb+srv://admin:admindb@eia2-t8sql.mongodb.net/test?retryWrites=true&w=majority";
