@@ -20,6 +20,7 @@ var L07_Cocktailbar;
         let mongoClient = new Mongo.MongoClient(_url, options);
         await mongoClient.connect();
         orders = mongoClient.db("Cocktailbar").collection("Orders");
+        orders.insert({ connect: true });
         console.log("Database connection ", orders != undefined);
     }
     function startServer(_port) {
