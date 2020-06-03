@@ -28,7 +28,6 @@ export namespace L07_Cocktailbar {
     await mongoClient.connect();
 
     orders = mongoClient.db("Cocktailbar").collection("Orders");
-    orders.insert({connect: true});
     console.log("Database connection ", orders != undefined);
   }
   function startServer(_port: number | string): void {
