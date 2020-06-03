@@ -36,7 +36,7 @@ var L07_Cocktailbar;
     async function sendOrder() {
         let formData = new FormData(form);
         let query = new URLSearchParams(formData);
-        await fetch("http://localhost:5001?" + query.toString());
+        await fetch("https://cocktailbar-eia2.herokuapp.com?" + query.toString());
     }
     function handleChange(_event) {
         let order = document.querySelector("div#order");

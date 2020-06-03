@@ -50,7 +50,7 @@ namespace L07_Cocktailbar {
   async function sendOrder(): Promise<void> {
     let formData: FormData = new FormData(form);
     let query: URLSearchParams = new URLSearchParams(<any>formData);
-    await fetch("http://localhost:5001?" + query.toString());
+    await fetch("https://cocktailbar-eia2.herokuapp.com?" + query.toString());
 
   }
   function handleChange(_event: Event): void {
