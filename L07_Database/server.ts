@@ -15,15 +15,15 @@ export namespace L07_Cocktailbar {
 
   let databaseUrl: string = "mongodb://localhost:27017";
 
-  if (process.argv[2] == "remote")
-    databaseUrl = "mongodb+srv://admin:admindb@eia2-t8sql.mongodb.net/test?retryWrites=true&w=majority";
+  /*if (process.argv[2] == "remote")*/
+  databaseUrl = "mongodb+srv://admin:admindb@eia2-t8sql.mongodb.net/test?retryWrites=true&w=majority";
 
   startServer(port);
   connectToDataBase(databaseUrl);
 
   //mongodb+srv://admin:<password>@eia2-t8sql.mongodb.net/test?retryWrites=true&w=majority
   async function connectToDataBase(_url: string): Promise<void> {
-    let options: Mongo.MongoClientOptions = {useNewUrlParser: true, useUnifiedTopology: true};
+    let options: Mongo.MongoClientOptions = { useNewUrlParser: true, useUnifiedTopology: true };
     let mongoClient: Mongo.MongoClient = new Mongo.MongoClient(_url, options);
     await mongoClient.connect();
 
