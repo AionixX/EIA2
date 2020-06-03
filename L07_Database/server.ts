@@ -11,7 +11,7 @@ export namespace L07_Cocktailbar {
   let port: number | string | undefined = process.env.port;
 
   if (port == undefined)
-    port = 80;
+    port = 5001;
 
   let databaseUrl: string = "mongodb://localhost:27017";
 
@@ -32,7 +32,7 @@ export namespace L07_Cocktailbar {
   }
   function startServer(_port: number | string): void {
     let server: Http.Server = Http.createServer();
-    server.listen();
+    server.listen(port);
     console.log("listening on :");
     server.addListener("request", handleRequest);
   }

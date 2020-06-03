@@ -37,7 +37,7 @@ var L07_Cocktailbar;
         let formData = new FormData(form);
         let query = new URLSearchParams(formData);
         alert(query.toString());
-        await fetch("https://cocktailbar-eia2.herokuapp.com:5001?" + query.toString());
+        await fetch("https://cocktailbar-eia2.herokuapp.com?" + query.toString());
     }
     function handleChange(_event) {
         let order = document.querySelector("div#order");
