@@ -51,7 +51,7 @@ namespace L07_Cocktailbar {
     let formData: FormData = new FormData(form);
     let query: URLSearchParams = new URLSearchParams(<any>formData);
     alert(query.toString());
-    await fetch("https://cocktailbar-eia2.herokuapp.com?" + query.toString());
+    await fetch("https://cocktailbar-eia2.herokuapp.com:5001?" + query.toString());
 
   }
   function handleChange(_event: Event): void {
