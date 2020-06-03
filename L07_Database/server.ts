@@ -39,6 +39,7 @@ export namespace L07_Cocktailbar {
     _response.setHeader("content-type", "text/html; charset=utf-8");
     _response.setHeader("Access-Control-Allow-Origin", "*");
 
+    console.log("Here");
     if (_request.url) {
       console.log(_request.url);
       let url: Url.UrlWithParsedQuery = Url.parse(_request.url, true);

@@ -30,6 +30,7 @@ var L07_Cocktailbar;
     function handleRequest(_request, _response) {
         _response.setHeader("content-type", "text/html; charset=utf-8");
         _response.setHeader("Access-Control-Allow-Origin", "*");
+        console.log("Here");
         if (_request.url) {
             console.log(_request.url);
             let url = Url.parse(_request.url, true);
