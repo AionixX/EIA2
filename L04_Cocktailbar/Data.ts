@@ -1,4 +1,11 @@
 namespace L07_Cocktailbar {
+  interface Item {
+    name: string;
+    price: number;
+  }
+  interface Data {
+    [category: string]: Item[];
+  }
   export let data: Data = {
     Drink: [
       {name: "Mojito", price: 25.00},

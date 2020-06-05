@@ -4,7 +4,7 @@ namespace L04_Cocktailbar {
   
   function handleLoad(_event: Event): void {
 
-    generateContent(data);
+    //generateContent(data);
   
     let form: HTMLDivElement = <HTMLDivElement>document.querySelector("div#form");
     let slider: HTMLInputElement = <HTMLInputElement>document.querySelector("input#amount");

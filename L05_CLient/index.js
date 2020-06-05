@@ -1,4 +1,6 @@
-export var L05_Cocktailbar;
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var L05_Cocktailbar;
 (function (L05_Cocktailbar) {
     let form;
     let slider;
@@ -130,5 +132,5 @@ export var L05_Cocktailbar;
         }
         return group;
     }
-})(L05_Cocktailbar || (L05_Cocktailbar = {}));
+})(L05_Cocktailbar = exports.L05_Cocktailbar || (exports.L05_Cocktailbar = {}));
 //# sourceMappingURL=index.js.map

@@ -1,6 +1,6 @@
 "use strict";
-var Haushaltshilfe;
-(function (Haushaltshilfe) {
+var HaushaltshilfeOld;
+(function (HaushaltshilfeOld) {
     window.addEventListener("load", init);
     let contentContainer;
     let totalCosts;
@@ -384,5 +384,5 @@ var Haushaltshilfe;
         delButton.textContent = "Löschen";
         return delButton;
     }
-})(Haushaltshilfe || (Haushaltshilfe = {}));
+})(HaushaltshilfeOld || (HaushaltshilfeOld = {}));
 //# sourceMappingURL=index.js.map

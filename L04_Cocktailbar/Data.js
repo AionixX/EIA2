@@ -1,7 +1,7 @@
 "use strict";
-var L04_Cocktailbar;
-(function (L04_Cocktailbar) {
-    L04_Cocktailbar.data = {
+var L07_Cocktailbar;
+(function (L07_Cocktailbar) {
+    L07_Cocktailbar.data = {
         Drink: [
             { name: "Mojito", price: 25.00 },
             { name: "Caipirinha", price: 30.00 },
@@ -20,5 +20,5 @@ var L04_Cocktailbar;
             { name: "Plasticbag", price: 0.05 }
         ]
     };
-})(L04_Cocktailbar || (L04_Cocktailbar = {}));
+})(L07_Cocktailbar || (L07_Cocktailbar = {}));
 //# sourceMappingURL=Data.js.map

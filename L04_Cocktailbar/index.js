@@ -3,7 +3,7 @@ var L04_Cocktailbar;
 (function (L04_Cocktailbar) {
     window.addEventListener("load", handleLoad);
     function handleLoad(_event) {
-        L04_Cocktailbar.generateContent(L04_Cocktailbar.data);
+        //generateContent(data);
         let form = document.querySelector("div#form");
         let slider = document.querySelector("input#amount");
         form.addEventListener("change", handleChange);
