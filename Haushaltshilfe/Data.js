@@ -10,10 +10,16 @@ var Haushaltshilfe;
         Shops[Shops["Rewe"] = 4] = "Rewe";
         Shops[Shops["M\u00FCller"] = 5] = "M\u00FCller";
     })(Shops = Haushaltshilfe.Shops || (Haushaltshilfe.Shops = {}));
-    Haushaltshilfe.taskList = [
-        "Shopping",
-        "Bank",
-        "Work"
+    Haushaltshilfe.workList = [
+        {
+            workTask: "wipe",
+            price: 10,
+            amount: 1
+        }, {
+            workTask: "mowing",
+            price: 8,
+            amount: 1
+        }
     ];
     Haushaltshilfe.articleList = [
         {

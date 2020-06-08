@@ -1,4 +1,37 @@
 namespace Haushaltshilfe {
+
+  export interface Task {
+    articles: Article[] | null;
+    bank: Bank[] |null;
+    work: Work[] | null;
+  }
+  export interface Shopping {
+    article: Article[];
+  }
+
+  export interface Article {
+    articleName: string;
+    amount: number;
+    price: number;
+    unitType: Unit[];
+    preferredShop: string;
+  }
+
+  export interface Unit {
+    unitName: string;
+    unitFactor: number;
+  }
+
+  export interface Bank {
+    bankTask: string;
+    amount: number;
+  }
+
+  export interface Work {
+    workTask: string;
+    price: number;
+    amount: number;
+  }
   export enum Shops {
     None,
     Aldi,
@@ -7,10 +40,16 @@ namespace Haushaltshilfe {
     Rewe,
     Müller
   }
-  export let taskList: string[] = [
-    "Shopping",
-    "Bank",
-    "Work"
+  export let workList: Work[] = [
+    {
+      workTask: "wipe",
+      price: 10,
+      amount: 1
+    }, {
+      workTask: "mowing",
+      price: 8,
+      amount: 1
+    }
   ];
 
   export let articleList: Article[] = [

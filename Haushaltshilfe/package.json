@@ -1,0 +1,16 @@
+{
+  "name": "haushaltshilfe",
+  "version": "1.0.0",
+  "description": "",
+  "main": "Server.js",
+  "dependencies": {
+    "@types/mongodb": "^3.5.20",
+    "mongodb": "^3.5.8"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "node Server.js remote"
+  },
+  "author": "Dennis",
+  "license": "ISC"
+}
