@@ -34,7 +34,10 @@ namespace canvas {
     let gradient: CanvasGradient = crc2.createLinearGradient(0, 0, 0, 100);
 
     gradient.addColorStop(0, "black");
-    gradient.addColorStop(.5, "red");
+    gradient.addColorStop(0.3, "black");
+    gradient.addColorStop(.4, "red");
+    gradient.addColorStop(0.6, "red");
+    gradient.addColorStop(0.7, "gold");
     gradient.addColorStop(1, "gold");
 
     crc2.fillStyle = gradient;
