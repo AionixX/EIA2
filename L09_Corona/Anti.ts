@@ -8,7 +8,7 @@ namespace L09_Corona {
     offset: Vector;
     antiColor: CanvasGradient;
 
-    constructor(_position?: Vector, _velocity?: Vector, _size?: number, _ends?: number) {
+    constructor(_position?: Vector, _velocity?: Vector, _size?: number) {
       this.position = _position ? _position : new Vector(random(0, canvas.width), random(0, canvas.height));
       this.velocity = _velocity ? _velocity : new Vector(random(100, 100), random(-100, 100));
       this.size = _size ? _size : random(5, 15);

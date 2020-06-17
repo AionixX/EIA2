@@ -2,7 +2,7 @@
 var L09_Corona;
 (function (L09_Corona) {
     class Anti {
-        constructor(_position, _velocity, _size, _ends) {
+        constructor(_position, _velocity, _size) {
             this.position = _position ? _position : new L09_Corona.Vector(random(0, L09_Corona.canvas.width), random(0, L09_Corona.canvas.height));
             this.velocity = _velocity ? _velocity : new L09_Corona.Vector(random(100, 100), random(-100, 100));
             this.size = _size ? _size : random(5, 15);
