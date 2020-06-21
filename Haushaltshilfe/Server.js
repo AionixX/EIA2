@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.Haushaltshilfe = void 0;
 const Http = require("http");
 //import * as Url from "url";
 const Mongo = require("mongodb");

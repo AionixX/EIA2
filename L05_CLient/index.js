@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.L05_Cocktailbar = void 0;
 var L05_Cocktailbar;
 (function (L05_Cocktailbar) {
     let form;
