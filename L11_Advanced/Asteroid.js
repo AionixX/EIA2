@@ -4,7 +4,7 @@ var L11_Asteroids;
     class Asteroid extends L11_Asteroids.Moveable {
         constructor(_size, _position) {
             super(_position);
-            this.hitRadius = 50 * this.size;
+            this.hitRadius = 50;
             this.velocity = new L11_Asteroids.Vector(0, 0);
             this.velocity = L11_Asteroids.Vector.getRandom(100, 200);
             this.type = Math.floor(Math.random() * 4);

@@ -6,7 +6,7 @@ namespace L11_Asteroids {
     constructor(_size: number, _position?: Vector) {
       super(_position);
 
-      this.hitRadius = 50 * this.size;
+      this.hitRadius = 50;
 
       this.velocity = new Vector(0, 0);
       this.velocity = Vector.getRandom(100, 200);
