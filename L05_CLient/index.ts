@@ -15,7 +15,6 @@ export namespace L05_Cocktailbar {
   window.addEventListener("load", handleLoad);
   
   async function handleLoad(_event: Event): Promise<void> {
-
     let response: Response = await fetch("Data.json");
     let offer: string = await response.text();
     let data: Data = JSON.parse(offer);
@@ -35,8 +34,8 @@ export namespace L05_Cocktailbar {
     let formData: FormData = new FormData(form);
     let query: URLSearchParams = new URLSearchParams(<any>formData);
     await fetch("index?html?" + query.toString());
-
   }
+
   function handleChange(_event: Event): void {
     let order: HTMLDivElement = <HTMLDivElement>document.querySelector("div#order");
     order.innerHTML = "";
@@ -62,9 +61,9 @@ export namespace L05_Cocktailbar {
 
       total += Number(price);
     }
-
     order.innerHTML += "<strong>Total: € " + Number(total).toFixed(2) + "</strong>";
   }
+
   function displayAmount(_event: Event): void {
     let progress: HTMLProgressElement = <HTMLProgressElement>document.querySelector("progress");
     let amount: string = (<HTMLInputElement>_event.target).value;
@@ -111,6 +110,7 @@ export namespace L05_Cocktailbar {
 
     return fieldSet;
   }
+  
   function createSelect(_items: Item[], _category: string): HTMLSelectElement | null {
     let select: HTMLSelectElement = document.createElement("select");
     select.name = _category;
